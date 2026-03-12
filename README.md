@@ -1,190 +1,87 @@
-# 智慧便利店实时监控系统
+# 智慧便利店实时监控大屏 (Smart Store Monitor)
 
-基于 **Vue 3 + Three.js + Tailwind CSS + Flask** 的前后端分离实时监控大屏系统。
+## 📖 项目简介
+本项目是一个旨在提升门店管理效率的**智慧便利店实时监控大屏**系统。通过可视化的界面，系统能够直观、实时地展示便利店的核心运营数据，包括客流量趋势、商品库存状态以及店内关键设备的运行情况，帮助管理人员进行科学决策和高效调度。
 
-## 技术栈
+## ✨ 功能特性
+* **📈 客流监控**：实时统计并展示进出店客流量数据，分析客流高峰时段。
+* **📦 库存看板**：动态追踪商品库存变化，支持分类展示及低库存预警。
+* **🖥️ 设备状态**：实时监控店内设备（如冷柜、监控摄像头、收银终端等）的在线与运行状况。
+* **📊 数据可视化**：采用大屏 UI 设计，通过直观的图表呈现各项核心业务指标。
 
-### 前端
-- **Vue 3** - 渐进式 JavaScript 框架
-- **Vue Router** - 路由管理
-- **Pinia** - 状态管理
-- **Three.js** - 3D 可视化效果
-- **ECharts** - 图表可视化
-- **Tailwind CSS** - 原子化 CSS 框架
-- **Socket.IO Client** - WebSocket 实时通信
-- **Axios** - HTTP 请求库
-- **Vite** - 构建工具
+## 🛠️ 技术栈
+* **前端界面**：HTML / CSS / JavaScript (结合 Vue.js 实现动态响应与大屏可视化图表)
+* **后端服务**：Python (提供 API 接口与页面渲染)
+* **架构设计**：采用经典的分层架构设计，分离数据访问、业务逻辑与视图控制。
 
-### 后端
-- **Flask** - Python Web 框架
-- **Flask-SocketIO** - WebSocket 支持
-- **Flask-CORS** - 跨域支持
-- **PyMySQL** - MySQL 数据库连接
-- **Pandas** - 数据分析
+## 📂 目录结构
 
-## 项目结构
+```text
+smart-store-monitor/
+├── templates/      # 前端 HTML 模板与页面目录
+├── app.py          # 应用程序主入口，包含 Web 服务初始化与路由控制
+├── config.py       # 项目全局配置文件（如数据库连接、环境常量等）
+├── service.py      # 业务逻辑层（Service），处理核心业务处理规则
+├── dao.py          # 数据访问层（DAO），负责与数据库进行交互
+├── models.py       # 数据模型层，定义核心数据结构与实体对象
+├── README.md       # 项目说明文档
+├── LICENSE         # 开源协议文件
+└── .gitignore      # Git 忽略配置
 
 ```
-smart_store_monitor/
-├── backend/                 # 后端 Flask API
-│   ├── app.py              # 主应用入口
-│   ├── config.py           # 数据库配置
-│   ├── dao.py              # 数据访问层
-│   ├── models.py           # 数据模型
-│   ├── service.py          # 业务逻辑层
-│   └── requirements.txt    # Python 依赖
-│
-├── frontend/               # 前端 Vue 项目
-│   ├── src/
-│   │   ├── api/           # API 接口封装
-│   │   ├── assets/        # 静态资源
-│   │   ├── router/        # 路由配置
-│   │   ├── store/         # Pinia 状态管理
-│   │   └── views/         # 页面组件
-│   │       ├── Login.vue      # 登录页
-│   │       ├── Dashboard.vue  # 监控大屏
-│   │       └── Manage.vue     # 订单管理
-│   ├── index.html
-│   ├── package.json
-│   ├── vite.config.js
-│   ├── tailwind.config.js
-│   └── postcss.config.js
-│
-├── start.bat              # Windows 启动脚本
-├── start.sh               # Linux/Mac 启动脚本
-└── README.md
-```
 
-## 功能特性
+## 🚀 快速开始
 
-- **实时数据监控** - WebSocket 推送客流、营业额等数据
-- **3D 可视化** - Three.js 实现粒子背景和店内热力图
-- **数据图表** - ECharts 展示品类排行和客流波动
-- **订单管理** - 增删改查、分页、筛选功能
-- **响应式设计** - Tailwind CSS 实现现代化 UI
-- **前后端分离** - RESTful API + 独立前端项目
+### 1. 环境准备
 
-## 快速开始
+确保您的计算机上已安装 [Python 3.x](https://www.python.org/) 环境。
 
-### 环境要求
+### 2. 克隆项目
 
-- Python 3.8+
-- Node.js 18+
-- MySQL 5.7+
-
-### 1. 配置数据库
-
-修改 `backend/config.py` 中的数据库连接信息：
-
-```python
-DB_CONFIG = {
-    'host': '127.0.0.1',
-    'port': 3306,
-    'user': 'root',
-    'password': 'your_password',
-    'database': 'smart_store',
-    'charset': 'utf8mb4'
-}
-```
-
-### 2. 安装后端依赖
+将代码仓库克隆到本地：
 
 ```bash
-cd backend
-pip install -r requirements.txt
+git clone [https://github.com/canyouio/smart-store-monitor.git](https://github.com/canyouio/smart-store-monitor.git)
+cd smart-store-monitor
+
 ```
 
-### 3. 安装前端依赖
+### 3. 安装依赖与配置
+
+建议在虚拟环境中运行此项目，并安装 Python Web 框架相关的依赖：
 
 ```bash
-cd frontend
-npm install
+# 创建并激活虚拟环境 (可选)
+python -m venv venv
+# Windows: venv\Scripts\activate
+# Linux/Mac: source venv/bin/activate
+
+# 安装依赖 (如使用 Flask/FastAPI 等，请根据实际情况安装)
+# 示例: pip install flask 
+
 ```
 
-### 4. 启动项目
+*请在运行前检查 `config.py`，根据您的本地环境完成相关的数据库或基础参数配置。*
 
-**Windows:**
-```bash
-start.bat
-```
+### 4. 启动服务
 
-**Linux/Mac:**
-```bash
-chmod +x start.sh
-./start.sh
-```
-
-**或手动启动:**
+运行主程序启动 Web 服务：
 
 ```bash
-# 后端
-cd backend
 python app.py
 
-# 前端 (新终端)
-cd frontend
-npm run dev
 ```
 
-### 5. 访问系统
+启动成功后，在浏览器中访问终端输出的本地运行地址（例如 `http://127.0.0.1:5000`）即可查看监控大屏。
 
-- 前端地址: http://localhost:5173
-- 后端 API: http://127.0.0.1:5000
-- 默认账号: **admin / 123456**
+## 🤝 参与贡献
 
-## API 接口
+欢迎提交 Issue 探讨问题，或者通过 Pull Request 改进代码。
 
-| 接口 | 方法 | 说明 |
-|------|------|------|
-| `/api/auth/login` | POST | 用户登录 |
-| `/api/auth/logout` | POST | 退出登录 |
-| `/api/auth/check` | GET | 检查登录状态 |
-| `/api/orders` | GET | 获取订单列表 |
-| `/api/order/add` | POST | 新增订单 |
-| `/api/order/update` | POST | 更新订单 |
-| `/api/order/delete/<id>` | DELETE | 删除订单 |
-| `/api/offline-stats` | GET | 品类销售排行 |
-| `/api/realtime-state` | GET | 实时状态 |
+## 📄 开源协议
 
-## WebSocket 事件
+本项目采用 [Apache-2.0 License](https://www.google.com/search?q=LICENSE) 开源许可协议。详情请查阅 https://www.google.com/search?q=LICENSE 文件。
 
-- `store_update` - 实时推送店铺状态更新
-
-## 截图预览
-
-### 登录页面
-- Three.js 粒子动画背景
-- 玻璃拟态卡片设计
-
-### 监控大屏
-- 实时营业额、客流统计卡片
-- 品类营业额排行柱状图
-- 实时客流监控折线图
-- 店内 3D 热力图可视化
-
-### 订单管理
-- 数据表格展示
-- 多条件筛选
-- 分页导航
-- 新增/编辑/删除操作
-
-## 开发说明
-
-### 前端开发
-
-```bash
-cd frontend
-npm run dev     # 开发模式
-npm run build   # 生产构建
 ```
 
-### 后端开发
-
-```bash
-cd backend
-python app.py   # 启动开发服务器
 ```
-
-## License
-
-MIT
